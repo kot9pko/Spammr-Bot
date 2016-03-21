@@ -18,7 +18,7 @@ def listener(messages):
         tgChatID = message.chat.id
         text = message.text
         print tgContact + ": " + text
-        if message.content_type == "text" and tgContact == tgUsername:
+        if message.content_type == "text" and tgContact in tgUsernames:
             registeredUser = True
             print "Registered user"
         else:

@@ -1,5 +1,5 @@
 # TELEGRAM SETUP
-tgUsername = ''
+tgUsernams = ['kot9pko', 'yournick', 'etc']
 tgToken = ''
 
 

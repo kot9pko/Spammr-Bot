@@ -14,7 +14,7 @@ registeredUser = True
 def listener(messages):
     global registeredUser
     for message in messages:
-        tgContact = message.chat.username
+        tgContact = message.from_user.username
         tgChatID = message.chat.id
         text = message.text
         print tgContact + ": " + text

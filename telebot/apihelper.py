@@ -8,7 +8,7 @@ from telebot import types
 logger = telebot.logger
 
 
-def _make_request(token, method_name, method='get', params=None, files=None):
+def _make_request(token, method_name=None, method='get', params=None, files=None):
     """
     Makes a request to the Telegram API.
     :param token: The bot's API token. (Created with @BotFather)
@@ -80,6 +80,10 @@ def get_user_profile_photos(token, user_id, offset=None, limit=None):
         payload['limit'] = limit
     return _make_request(token, method_url, params=payload)
 
+def get_file_obj(token, file_id):
+    method_url = r'getFile'
+    payload = {'file_id': file_id}
+    return _make_request(token, method_url, params=payload)
 
 def forward_message(token, chat_id, from_chat_id, message_id):
     method_url = r'forwardMessage'

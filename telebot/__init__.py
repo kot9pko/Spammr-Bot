@@ -9,6 +9,8 @@ except ImportError:
     import queue as Queue
 import time
 
+import requests
+
 import logging
 
 logger = logging.getLogger('Telebot')
@@ -364,6 +366,17 @@ class TeleBot:
                 for handler in handlers:
                     self.worker_pool.put(handler, message)
                 self.message_subscribers_next_step.pop(chat_id, None)
+
+    def get_file_obj(self, file_id):
+        return apihelper.get_file_obj(self.token, file_id)
+
+    def _get_file(self, file_path, filename='received_file'):
+        url = API_URL + 'file/bot' + self.token + '/' + file_path
+        r = requests.get(url, stream=True)
+        if r.status_code == 200:
+            with open(filename, 'wb') as f:
+                for chunk in r:
+                    f.write(chunk)
 
     def message_handler(self, commands=None, regexp=None, func=None, content_types=['text']):
         """

@@ -12,6 +12,7 @@ Sticker
 Video
 Contact
 Location
+File
 Update
 InputFile
 UserProfilePhotos
@@ -343,6 +344,18 @@ class Location(JsonDeserializable):
         self.longitude = longitude
         self.latitude = latitude
 
+class File(JsonSerializable):
+    def to_json(self):
+        obj = cls.check_json(json_string)
+        json_dict = {'file_id': obj['file_id'],
+                     'file_size': obj['file_size'],
+                     'file_path': obj['file_path']}
+        return File(cls, json_string)
+
+    def __init__(self, file_id, file_size, file_path):
+        self.file_id = file_id
+        self.file_size = file_size
+        self.file_path = file_path
 
 class UserProfilePhotos(JsonDeserializable):
     @classmethod

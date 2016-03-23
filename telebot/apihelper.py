@@ -8,7 +8,7 @@ from telebot import types
 logger = telebot.logger
 
 
-def _make_request(token, method_name=None, method='get', params=None, files=None):
+def _make_request(token, method_name, method='get', params=None, files=None):
     """
     Makes a request to the Telegram API.
     :param token: The bot's API token. (Created with @BotFather)
